@@ -52,11 +52,11 @@ for (i in 1:15){
 }
 kable(a, align = "l")
 ```
-
+```
              1    2    3    4    5    6    7    8    9    10   11   12   13   14   15 
 -----------  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---
 sum. error   29   23   22   22   22   23   22   24   23   24   23   22   22   25   26 
-
+```
 Вполне целесообразно остановиться на значении **k = 3**.
 Построим прогноз и таблицу сопряженности.
 
@@ -90,11 +90,12 @@ train = df[-test.num, -c(1:4, 9, 14)]
 
 Попробуем подобрать параметры нашей модели. В качестве параметра качества будем использовать **%** ошибок.
 
-
+```
         (5; 2; 6)   (10; 5; 4)   (10; 5; 3)   (10; 5; 2)   (20; 10; 4) 
 ------  ----------  -----------  -----------  -----------  ------------
 train   0.09        0.10         0.11         0.13         0.12        
 test    0.15        0.15         0.16         0.14         0.15        
+```
 
 Следуя правилу KISS, остановимся на параметрах **(10; 5; 2)**
 
@@ -106,7 +107,7 @@ res = rpart(cl ~ ., data = train, method = "class",
 rpart.plot(res, type = 2, extra = 1)
 ```
 
-![](HW_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+![alt text](https://github.com/xaphoon/some_tasks_on_R/blob/master/unnamed-chunk-10-1.png)<!-- -->
 
 ```r
 table(train$cl, predict(res, train[ , -9], type = "class"))
@@ -286,7 +287,7 @@ round(sum(cl.1[test.num] != predict(res, test))/nrow(test), 2)
 varImpPlot(res, sort = F)
 ```
 
-![](HW_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+![alt text](https://github.com/xaphoon/some_tasks_on_R/blob/master/unnamed-chunk-15-1.png)<!-- -->
 
 # GBM
 
